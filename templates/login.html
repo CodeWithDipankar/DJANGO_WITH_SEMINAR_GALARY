@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}
+  Login
+{% endblock %}
+
+{% block body %}
+  <!-- Modal -->
+  <script>
+    window.onload = function () {
+      OpenBootstrapPopup()
+    }
+    function OpenBootstrapPopup() {
+      $('#staticBackdrop').modal('show')
+    }
+  </script>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    ;(function () {
+      'use strict'
+      window.addEventListener(
+        'load',
+        function () {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation')
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener(
+              'submit',
+              function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+              },
+              false
+            )
+          })
+        },
+        false
+      )
+    })()
+  </script>
+  <script type="text/javascript">
+    setTimeout(function () {
+      // Closing the alert
+      $('.alert').alert('close')
+    }, 10000)
+  </script>
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 class="modal-title w-100" id="staticBackdropLabel">LOGIN</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-2 my-2" role="alert" style="font-size: 10px; ">
+              {% if message.tags == 'success' %}
+                <i class="fa-solid fa-circle-check fa-bounce fa-lg me-2 mt-2" style="color: #146c43;"></i>
+                <b>{{ message }}</b>
+              {% endif %}
+              {% if message.tags == 'danger' %}
+                <i class="fa-solid fa-triangle-exclamation fa-bounce fa-lg me-2" style="color: #b02a37;"></i>
+                <b>{{ message }}</b>
+              {% endif %}
+              {% if message.tags == 'warning' %}
+                <i class="fa-solid fa-triangle-exclamation fa-lg fa-bounce me-2" style="color: #997404;"></i>
+                <b>{{ message }}</b>
+              {% endif %}
+              {% if message.tags == 'info' %}
+                <i class="fa-sharp fa-regular fa-circle-check fa-lg me-2 mt-2" style="color: #087990;"></i>
+                <b>{{ message }}</b>
+              {% endif %}
+              <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close" style="top:10px; padding:.50rem .50rem;right:7px"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+        <div class="modal-body">
+          <form class="needs-validation" action="" method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="email" class="col-form-label">Username</label>
+              <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your registered email" onkeyup="validateEmail()" required />
+              <div class="invalid-feedback" id="invalid">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1" class="col-form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" minlength="8" maxlength="15" required />
+              <div class="invalid-feedback">Please enter a password</div>
+            </div>
+            <div class="footer-submit mt-3">
+              <button class="btn btn-dark px-3 float-right" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <div class="signup">
+            Don't have an account,<a href="/signup">&nbsp;signup&nbsp;</a>here
+          </div>
+
+          <div class="signup">
+            <a href="/forgot-pass">Forgot password ?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal0 -->
+  <div class="modal fade" id="staticBackdrop0" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Login alert !</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">Successfully login.</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

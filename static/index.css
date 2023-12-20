@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.navbar-brand {
+    font-family: 'Tilt Prism', cursive;
+    font-size: 23px;
+}
+
+body {
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    /* background-image: url('..\static\img\Wiretap.jpg'); */
+}
+
+#passwordHelpBlock {
+    font-size: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-item {
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
+.dropdown-item {
+    font-size: 13px;
+    padding: 7px;
+}
+
+.form-control,
+.btn {
+    font-size: 11px;
+}
+
+.signup {
+    font-size: 10px;
+    text-align: center;
+}
+
+.passdesc {
+    font-size: 1px;
+}
+
+.footer-submit {
+    float: right;
+}
+
+.footer-submit-back {
+    float: left;
+}
+
+.headline {
+    font-size: 10px;
+    color: green;
+
+}
+
+.avatar {
+    width: 10px;
+    height: 10px;
+}
+
+.modal {
+    margin-top: 50px;
+}
+
+.modal-title {
+    font-size: 20px;
+}
+
+.modal-dialog {
+    min-width: 320px;
+    max-width: 360px;
+}
+
+.modal-header {
+    background-color: #222222;
+    padding: 15px 16px;
+    color: #FFF;
+    border-bottom: 2px dashed #222222;
+    font-size: 10px;
+}
+
+.modal-content {
+    border-style: solid;
+
+}
+
+.col-form-label {
+    font-size: 13px;
+}
+
+.modal-footer {
+    margin: calc(var(--bs-modal-footer-gap) * .6);
+    padding: 6px 6px;
+    display: block;
+}
+
+.btn-close {
+    background-color: #FFF;
+}
+
+.custom-popover {
+    font-size: 10px;
+    /* background-color: rgb(220, 220, 103); */
+    --bs-popover-max-width: 240px;
+    --bs-popover-border-color: var(--bs-dark);
+    --bs-popover-header-bg: var(--bs-dark);
+    --bs-popover-header-color: var(--bs-white);
+    --bs-popover-header-font-size: 11px;
+    --bs-popover-body-padding-x: 1rem;
+    --bs-popover-body-padding-y: .5rem;
+}
+
+.form-control:focus,
+.btn:focus {
+    border-color: black;
+    box-shadow: 0 0 0 0.2rem rgba(21, 21, 21, 0.25);
+}
+
+/* 
+.form-check-input:focus {
+    background-color: black;
+} */
+
+.invalid-feedback {
+    font-size: 10px;
+}
+
+.d-block {
+    width: 90%;
+    height: 80vh;
+}
+
+.container-s {
+    width: 300px;
+}
+
+.modal-body {
+    font-size: 12px;
+}
+
+.border-danger:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.border-success:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+
+}
+
+
+/* Change the background color of the switch when it is on */
+
+.form-check {
+    font-size: 9px;
+}
+
+.form-check-input:checked {
+    background-color: black;
+    border-color: black;
+}
+
+/* Change the color of the switch handle */
+.form-check-input:checked+.form-check-label::before {
+    background-color: #fff;
+}
+
+
+/* Change the border color of the switch */
+.form-check-input:focus {
+    border-color: black;
+    box-shadow: 0 0 0 0.2rem rgba(21, 21, 21, 0.25);
+}
+
+#submit-button {
+    float: right;
+}
+
+.alert-dismissible .btn-close {
+    /* padding: calc(var(--bs-modal-header-padding-y) * .5) calc(var(--bs-modal-header-padding-x) * .5); */
+    /* margin: calc(-.5 * var(--bs-modal-header-padding-y)) calc(-.5 * var(--bs-modal-header-padding-x)) calc(-.5 * var(--bs-modal-header-padding-y)) auto; */
+    position: absolute;
+    top: 17px;
+    /* background-color: var(--bs-danger-bg-subtle); */
+    right: 8px;
+    z-index: 2;
+    padding: 0.6em 0.4rem;
+}

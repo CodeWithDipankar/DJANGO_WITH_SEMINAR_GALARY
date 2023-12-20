@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block head %}
+  <style>
+    span {
+      color: red;
+      font-size: 9px;
+    }
+    
+    .form-label {
+      font-size: 11px;
+    }
+  </style>
+{% endblock %}
+
+{% block title %}
+  SIGNUP
+{% endblock %}
+{% block body %}
+  <script>
+    // <!-- For modal show after loading the html page or onclick on the link -->
+    
+    window.onload = function () {
+      OpenBootstrapPopup()
+    }
+    function OpenBootstrapPopup() {
+      $('#staticBackdrop1').modal('show')
+    }
+  </script>
+  <script type="text/javascript">
+    setTimeout(function () {
+      // Closing the alert
+      $('.alert').alert('close')
+    }, 10000)
+  </script>
+  <!-- Modal1 -->
+
+  <div class="modal fade mt-5" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 class="modal-title w-100" id="staticBackdropLabel">SIGNUP</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-2 my-2" role="alert" style="font-size: 11px; ">
+              {% if message.tags == 'success' %}
+                <div style="display:flex">
+                  <i class="fa-solid fa-circle-check fa-bounce fa-lg me-2 mt-2" style="color: #146c43;"></i>
+                  <div>
+                    <p class="alert-heading" style="margin-top: 0;font-size: 10px;font-weight: bold;margin-bottom: 0px;">User created successfully</p> <hr style="margin: 2px 0; color: #146c43;" />{{ message }}
+                  </div>
+                </div>
+              {% endif %}
+              {% if message.tags == 'danger' %}
+                <i class="fa-solid fa-triangle-exclamation fa-bounce fa-lg me-2" style="color: #b02a37;"></i>
+                {{ message }}
+              {% endif %}
+              {% if message.tags == 'warning' %}
+                <i class="fa-solid fa-triangle-exclamation fa-lg fa-bounce me-2" style="color: #997404;"></i>
+                {{ message }}
+              {% endif %}
+
+              <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close" style="top:10px; padding:.50rem .50rem;right:7px"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+        <!-- <hr style="font-weight: bold;color:black, padding:0 px" /> -->
+        <div class="modal-body pt-2">
+          <form name="form1" action="" method="post">
+            {% csrf_token %}
+            <div class="row g-2">
+              <div class="col-md-6">
+                <label for="firstname" class="form-label mt-2 ms-1">First name*</label>
+                <input type="text" class="form-control mt-0" id="firstname" name="firstname" placeholder="Enter first name" onkeyup="validateUsername(this)" required />
+                <span id="firstnameError"></span>
+              </div>
+              <div class="col-md-6">
+                <label for="lastanme" class="form-label mt-2 ms-1">Last name*</label>
+                <input type="text" class="form-control mt-0" id="lastname" name="lastname" placeholder="Enter last name" onkeyup="validateUsername(this)" required />
+                <span id="lastnameError"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="eamil" class="form-label mt-2 ms-1 mt-1">Email address*</label>
+              <input type="email" class="form-control mt-0" id="email" name="email" placeholder="Enter your email" onkeyup="validateEmail()" required />
+              <span id="emailError"></span>
+            </div>
+            <div class="form-group">
+              <label for="password" class="form-label mt-2 ms-1 mt-1">Password*</label>
+              <input type="password" class="form-control mt-0" id="password" name="password" placeholder="Enter a password" onkeyup="validatePassword()" required />
+              <span id="passwordError"></span>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password" class="form-label mt-2 ms-1 mt-1">Confirm Password*</label>
+              <input type="password" class="form-control mt-0" id="confirm-password" name="confirm-password" placeholder="Confirm your password" onkeyup="validatePassword1()" required />
+              <span id="passwordError1"></span>
+            </div>
+
+            <div class="form-check form-switch mt-2">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="myFunction()" />
+              <label class="form-check-label" for="flexSwitchCheckDefault">Show password</label>
+            </div>
+            <button class="btn btn-dark px-3 float-right" value="submit" type="submit" id="submit-button">Submit</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <div class="signup">
+            Have an account, <a href="/login">&nbsp;SignIn&nbsp;</a>here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

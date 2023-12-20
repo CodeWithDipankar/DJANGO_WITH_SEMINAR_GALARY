@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %}
+  UserOtpValidate_page
+{% endblock %}
+{% block head %}
+  <style>
+    /* Import Google font - Poppins */
+    /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');  */
+    
+    form .input-field {
+      flex-direction: row;
+      column-gap: 10px;
+    }
+    
+    .input-field input {
+      height: 35px;
+      font-family: 'Poppins', sans-serif;
+      width: 32px;
+      border-radius: 6px;
+      outline: none;
+      font-size: 0.75 rem;
+      text-align: center;
+      border: 1px solid #0000002d;
+      margin-top: 20px;
+      margin-bottom: 25px;
+      column-gap: 13px;
+    }
+    
+    .input-field input:focus {
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .input-field input::-webkit-inner-spin-button,
+    .input-field input::-webkit-outer-spin-button {
+      display: none;
+    }
+    
+    .signup a:hover {
+      background-color: black;
+      color: white;
+    }
+  </style>
+{% endblock %}
+{% block body %}
+  <!-- on loading of the page modal appear function -->
+  <script>
+    window.onload = function () {
+      OpenBootstrapPopup()
+    }
+    function OpenBootstrapPopup() {
+      $('#staticBackdrop').modal('show')
+    }
+  </script>
+  <!-- message close timer function -->
+  <script type="text/javascript">
+    setTimeout(function () {
+      // Closing the alert
+      $('.alert').alert('close')
+    }, 30000)
+  </script>
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 class="modal-title w-100" id="staticBackdropLabel">VERIFY YOUR ACCOUNT</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="post" action="">
+            {% csrf_token %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-2 my-2" role="alert" style="font-size: 11px; ">
+                  {% if message.tags == 'success' %}
+                    <div style="display:flex">
+                      <i class="fa-solid fa-circle-check fa-bounce fa-lg me-2 mt-2" style="color: #146c43;"></i>
+                      <div>
+                        <p class="alert-heading" style="margin-top: 0;font-size: 10px;font-weight: bold;margin-bottom: 0px;">Please enter your OTP</p>
+                        <hr style="margin: 2px 0; color: #146c43;" />{{ message }}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if message.tags == 'danger' %}
+                    <i class="fa-solid fa-triangle-exclamation fa-bounce fa-lg me-2" style="color: #b02a37;"></i>
+                    {{ message }}
+                  {% endif %}
+                  {% if message.tags == 'warning' %}
+                    <i class="fa-solid fa-triangle-exclamation fa-lg fa-bounce me-2" style="color: #997404;"></i>
+                    {{ message }}
+                  {% endif %}
+
+                  <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close" style="top:10px; padding:.50rem .50rem;right:7px"></button>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            <!--  {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show mx-0 mt-1" role="alert" style="font-size: 11px; ">
+                  {% if message.tags == 'success' %}
+                    <div style="display:flex">
+                      <i class="fa-solid fa-circle-check fa-bounce fa-lg me-2 mt-2" style="color: #146c43;"></i>
+                      <div>
+                        <p class="alert-heading" style="margin-top: 0;font-size: 10px;font-weight: bold;margin-bottom: 0px;">Please enter your OTP</p>
+                        <hr style="margin: 2px 0; color: #146c43;" />{{ message }}
+                      </div>
+                    </div>
+                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close" style="margin-top:-9px; padding:.30rem .30rem;right:7px"></button>
+                  {% endif %}
+                  {% if message.tags == 'danger' %}
+                    <i class="fa-solid fa-triangle-exclamation fa-bounce fa-lg me-2" style="color: #b02a37;"></i>
+                    {{ message }}
+                  {% endif %}
+                  {% if message.tags == 'warning' %}
+                    <i class="fa-solid fa-triangle-exclamation fa-lg fa-bounce me-2" style="color: #997404;"></i>
+                    {{ message }}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            {% endif %}  -->
+
+            <div class="mb-1">
+              <div>
+                <hr />
+                <div>
+                  <h5 style="font-size: 14px;text-align: center;  color:black">Enter OTP Code</h5>
+                </div>
+                <hr />
+
+                <div class="input-field mx-2 mt-5">
+                  <input class="mx-2" name="otp1" type="number" />
+                  <input class="mx-2" name="otp2" type="number" disabled />
+                  <input class="mx-2" name="otp3" type="number" disabled />
+                  <input class="mx-2" name="otp4" type="number" disabled />
+                  <input class="mx-2" name="otp5" type="number" disabled />
+                  <input class="mx-2" name="otp6" type="number" disabled />
+                </div>
+                <div class="d-grid gap-2 mt-3">
+                  <button class="btn btn-dark" type="submit" style=" font-size: 13px;">Verify OTP</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div id="timer" style="color: red;font-size: 11px;font-weight: 200;text-align: center;font-family: 'Poppins', sans-serif;"></div>
+
+          <div class="signup" style="display: none;" id="myButton">
+            Did not receive OTP?<a id="myLink" href="#" style=" padding:3px; margin-left: 2px;" class="rounded">&nbsp;Resend OTP&nbsp;<i class="fa-solid fa-paper-plane"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- code for countdown of resend otp option avilable -->
+  <script>
+    const COUNTDOWN_TIME = 30 // time in seconds
+    let timeLeft = COUNTDOWN_TIME
+    let countdownIntervalId = null
+    
+    function countdown() {
+      countdownIntervalId = setInterval(() => {
+        timeLeft--
+        document.getElementById('timer').innerHTML = `Resend OTP option will be available in : ${timeLeft} seconds`
+        if (timeLeft === 0) {
+          clearInterval(countdownIntervalId)
+          document.getElementById('myButton').style.display = 'block'
+          document.getElementById('timer').innerHTML = ''
+        }
+      }, 1000)
+    }
+    
+    countdown()
+  </script>
+
+  <!-- code for otp field manage and other functions of this field ....... -->
+  <script>
+    const inputs = document.querySelectorAll('input'),
+      button = document.querySelector('button')
+    
+    // iterate over all inputs
+    inputs.forEach((input, index1) => {
+      input.addEventListener('keyup', (e) => {
+        // This code gets the current input element and stores it in the currentInput variable
+        // This code gets the next sibling element of the current input element and stores it in the nextInput variable
+        // This code gets the previous sibling element of the current input element and stores it in the prevInput variable
+        const currentInput = input,
+          nextInput = input.nextElementSibling,
+          prevInput = input.previousElementSibling
+    
+        // if the value has more than one character then clear it
+        if (currentInput.value.length > 1) {
+          currentInput.value = ''
+          return
+        }
+        // if the next input is disabled and the current value is not empty
+        //  enable the next input and focus on it
+        if (nextInput && nextInput.hasAttribute('disabled') && currentInput.value !== '') {
+          nextInput.removeAttribute('disabled')
+          nextInput.focus()
+        }
+    
+        // if the backspace key is pressed
+        if (e.key === 'Backspace') {
+          // iterate over all inputs again
+          inputs.forEach((input, index2) => {
+            // if the index1 of the current input is less than or equal to the index2 of the input in the outer loop
+            // and the previous element exists, set the disabled attribute on the input and focus on the previous element
+            if (index1 <= index2 && prevInput) {
+              input.setAttribute('disabled', true)
+              input.value = ''
+              prevInput.focus()
+            }
+          })
+        }
+        //if the fourth input( which index number is 3) is not empty and has not disable attribute then
+        //add active class if not then remove the active class.
+        if (!inputs[3].disabled && inputs[3].value !== '') {
+          button.classList.add('active')
+          return
+        }
+        button.classList.remove('active')
+      })
+    })
+    
+    //focus the first input which index is 0 on window load
+    window.addEventListener('load', () => inputs[0].focus())
+  </script>
+{% endblock %}

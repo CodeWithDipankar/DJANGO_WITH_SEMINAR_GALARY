@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}
+  Forgot_pass...
+{% endblock %}
+{% block body %}
+  <script>
+    window.onload = function () {
+      OpenBootstrapPopup()
+    }
+    function OpenBootstrapPopup() {
+      $('#staticBackdrop2').modal('show')
+    }
+  </script>
+
+  <!-- Modal2 -->
+
+  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 class="modal-title w-100" id="staticBackdropLabel">FORGOT PASSWORD</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="alert alert-info alert-dismissible fade show mx-0 my-2" role="alert" style="font-size: 12px; ">
+              <div style="display:flex">
+                <i class="fa-solid fa-circle-check fa-bounce fa-lg me-2 mt-2" style="color: #087990;"></i>
+                <div>
+                  <p class="alert-heading" style="margin-top: 0;font-size: 10px;font-weight: bold;margin-bottom: 0px;">Please enter your registered email address to get the OTP (one-time-password)</p>
+                  {% comment %} <hr style="margin: 2px 0; color: #087990;" />{{ message }} {% endcomment %}
+                </div>
+              </div>
+
+              <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close" style="top:10px; padding:.50rem .50rem;right:7px"></button>
+            </div>
+
+            {% comment %} <div class="headline mb-2">Please enter your registered email address to get the OTP(one-time-password)</div> {% endcomment %}
+            <div class="mb-1">
+              <label for="username" class="col-form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your register email" />
+            </div>
+            <div class="mt-2">
+              <div class="footer-submit-back mt-3">
+                <a href="login"><button class="btn btn-dark px-3 float-left" type="submit">Back</button></a>
+              </div>
+              <div class="footer-submit mt-3">
+                <button class="btn btn-dark px-3 float-right" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal 3 -->
+  <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 class="modal-title w-100" id="staticBackdropLabel">OTP VALIDATE</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="headline">Please enter your OTP, has been sent to your registered email address.</div>
+            <div class="mb-1">
+              <label for="username" class="col-form-label">OTP</label>
+              <input type="text" class="form-control" id="recipient-name" placeholder="Enter your OTP" />
+            </div>
+          </form>
+          <div class="mt-2">
+            <div class="footer-submit">
+              <a class="btn btn-dark px-3 float-right mt-2" href="/reset-pass" type="submit" role="button">Validate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
